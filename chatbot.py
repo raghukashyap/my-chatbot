@@ -1,14 +1,26 @@
+from dotenv import load_dotenv
 import openai
+import os
 
-openai.api_key = "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"
+# openai.api_key = "#############"
 
+# Load environment variables from the .env file
+load_dotenv()
+
+# Get API key from environment variable
+openai.api_key = os.getenv('OPENAI_API_KEY')
+
+# Function to interact with the chatbot using the new API
 def chatbot_response(prompt):
-    response = openai.Completion.create(
-        engine="gpt-3.5",  # or gpt-4
-        prompt=prompt,
+    response = openai.chat.Completion.create(
+        model="gpt-3.5-turbo",  # Or use gpt-4 if you have access
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt},
+        ],
         max_tokens=150
     )
-    return response.choices[0].text.strip()
+    return response['choices'][0]['message']['content'].strip()
 
 if __name__ == "__main__":
     user_input = input("Ask the chatbot: ")
