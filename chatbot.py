@@ -12,7 +12,7 @@ openai.api_key = os.getenv('OPENAI_API_KEY')
 
 # Function to interact with the chatbot using the new API
 def chatbot_response(prompt):
-    response = openai.chat.Completion.create(
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",  # Or use gpt-4 if you have access
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
