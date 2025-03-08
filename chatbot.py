@@ -1,10 +1,10 @@
 import openai
 
-openai.api_key = "your-api-key-here"
+openai.api_key = "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"
 
 def chatbot_response(prompt):
     response = openai.Completion.create(
-        engine="gpt-4",  # or gpt-3.5
+        engine="gpt-3.5",  # or gpt-4
         prompt=prompt,
         max_tokens=150
     )
